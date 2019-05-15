@@ -47,7 +47,7 @@ endif()
 ##
 add_library(${NLOHMANN_JSON_TARGET_NAME} INTERFACE)
 add_library(${PROJECT_NAME}::${NLOHMANN_JSON_TARGET_NAME} ALIAS ${NLOHMANN_JSON_TARGET_NAME})
-if (${CMAKE_VERSION} VERSION_LESS "3.8.0") 
+if (${CMAKE_VERSION} VERSION_LESS "3.8.0")
     target_compile_features(${NLOHMANN_JSON_TARGET_NAME} INTERFACE cxx_range_for)
 else()
     target_compile_features(${NLOHMANN_JSON_TARGET_NAME} INTERFACE cxx_std_11)
@@ -70,17 +70,6 @@ if (MSVC)
             $<INSTALL_INTERFACE:${NLOHMANN_NATVIS_FILE}>
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${NLOHMANN_NATVIS_FILE}>
     )
-endif()
-
-##
-## TESTS
-## create and configure the unit test target
-##
-include(CTest) #adds option BUILD_TESTING (default ON)
-
-if(BUILD_TESTING AND JSON_BuildTests)
-    enable_testing()
-    add_subdirectory(test)
 endif()
 
 ##
